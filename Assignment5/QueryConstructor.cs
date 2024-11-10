@@ -67,7 +67,7 @@ public class QueryConstructor {
         string sql = "SELECT * FROM safe_course(@course_id);";
 
         
-        if (courseIdInput.Contains("--") || courseIdInput.Contains("\"") || courseIdInput.Contains("'"))
+        if (false) // later add test to check if illegal characters are input
         {
             Console.WriteLine("Illegal characters found in input.");
         }

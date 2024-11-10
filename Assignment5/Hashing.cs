@@ -5,7 +5,8 @@ using System.Security.Cryptography;
 using System.Text;
 
 public class Hashing {
-  const int salt_bitsize = 64;
+
+    const int salt_bitsize = 64;
   public const byte salt_bytesize = salt_bitsize/8;
  
   private HashAlgorithm sha256 = SHA256.Create();
@@ -35,9 +36,11 @@ public class Hashing {
 
   // hashSHA256() - hashing of the password and the salt
 
+  //5000 iterations seems to be a great mix between speed and complexity.
+  //Even 10.000 iterations can run in less than half a second on a simple 4-core machine
   private string hashSHA256(string password, string saltstring) {
     byte[] hashinput = Encoding.UTF8.GetBytes(saltstring + password); 
-    byte[] hashoutput = iteratedSha256(hashinput, 1);
+    byte[] hashoutput = iteratedSha256(hashinput, 5000);
     return Convert.ToHexString(hashoutput);
   }
 

@@ -37,20 +37,16 @@ public class Authenticator
         {
             string pw;
             string un;
-
-            Console.WriteLine("Please enter your future username");
+            Console.WriteLine("Please enter your future username (Pls. Dont inject code here :D)");
             un = Console.ReadLine();
             Console.WriteLine("Please enter your future password");
             pw = Console.ReadLine();
-
             register(un, pw);
         }
-
         else if (Console.ReadLine() == "l")
         {
             string pw;
             string un;
-
             Console.WriteLine("Please enter your username");
             un = Console.ReadLine();
             Console.WriteLine("Please enter your password");
@@ -61,7 +57,6 @@ public class Authenticator
                 Console.WriteLine("Sucessfull login");
             }
             else Console.WriteLine("Unsucessful login");
-
         }
         else
         {
@@ -189,4 +184,3 @@ return query;
 
 //Here we inserted a parameter instead, that make sure that we no longer write directly in the query-string.
 //This removes the vulnarability from the function
-
