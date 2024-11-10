@@ -1,6 +1,7 @@
 ﻿// Authenticator.cs
 
 using Npgsql;
+using System.Runtime.CompilerServices;
 
 public class Authenticator
 {
@@ -55,11 +56,12 @@ public class Authenticator
             Console.WriteLine("Please enter your password");
             pw = Console.ReadLine();
 
-            if (login(un,pw))
+            if (login(un, pw))
             {
                 Console.WriteLine("Sucessfull login");
             }
-            login(un, pw);
+            else Console.WriteLine("Unsucessful login");
+
         }
         else
         {
@@ -171,4 +173,20 @@ public class Authenticator
                 + "where username = '" + username + "'";
     }
 }
+
+// Yes, in its current form, it is vulnarable to SQL-injections.
+// Currently the query is construncted by directly concatinating the parameters into the qeury-string
+//This makes it easy to inject SQL-code directly into the query.
+// If we wanted to fix the code, it could be set up like below:
+
+/*
+virtual public string sqlSelectUserRecord(string username)
+{
+string query = "SELECT salt, hashed_password FROM password WHERE username = @username";
+return query;
+}
+*/
+
+//Here we inserted a parameter instead, that make sure that we no longer write directly in the query-string.
+//This removes the vulnarability from the function
 
